@@ -1,0 +1,17 @@
+pandas
+numpy
+scikit-learn
+xgboost
+lightgbm
+yfinance
+matplotlib
+seaborn
+fastapi
+uvicorn
+pyyaml
+dvc
+dvclive
+mlflow
+optuna
+joblib
+python-dotenv
