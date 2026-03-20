@@ -1,0 +1,4 @@
+[ 2026-03-21 02:00:18,041 ] INFO - root - Started: download_stock_data
+[ 2026-03-21 02:00:18,041 ] INFO - root - Downloading data for ITC.NS till 2024-12-31
+[ 2026-03-21 02:00:19,258 ] INFO - root - Data saved at artifacts/raw/ITC_NS.csv
+[ 2026-03-21 02:00:19,258 ] INFO - root - Completed: download_stock_data

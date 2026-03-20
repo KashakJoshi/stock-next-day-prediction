@@ -1,0 +1,13 @@
+data:
+  ticker: "ITC.NS"
+  start_date: "2015-01-01"
+
+features:
+  window_size: 10
+  volatility_window: 20
+
+model:
+  type: "lightgbm"
+
+prediction:
+  mode: "next_day"

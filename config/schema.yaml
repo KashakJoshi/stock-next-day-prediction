@@ -1,0 +1,11 @@
+columns:
+  - Open
+  - High
+  - Low
+  - Close
+  - Adj Close
+  - Volume
+
+target_column: Close
+
+date_column: Date
