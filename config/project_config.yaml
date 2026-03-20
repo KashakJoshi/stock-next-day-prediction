@@ -1,0 +1,19 @@
+project_name: stock_next_day_prediction
+
+python_version: 3.11
+
+random_seed: 42
+
+data_source: yfinance
+
+target_variable: next_day_return
+
+prediction_mode: rolling
+
+tracking_tools:
+  - dvclive
+  - mlflow
+
+deployment:
+  platform: render
+  containerization: docker
