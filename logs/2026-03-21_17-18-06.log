@@ -1,0 +1,31 @@
+[ 2026-03-21 17:18:07,992 ] INFO - root - Started: download_stock_data
+[ 2026-03-21 17:18:07,992 ] INFO - root - Downloading data for ITC.NS till 2025-01-01
+[ 2026-03-21 17:18:08,847 ] INFO - root - Data saved at artifacts/raw/ITC_NS.csv
+[ 2026-03-21 17:18:08,847 ] INFO - root - Completed: download_stock_data
+[ 2026-03-21 17:18:08,847 ] INFO - root - Started: transform_data
+[ 2026-03-21 17:18:08,847 ] INFO - root - Starting data transformation
+[ 2026-03-21 17:18:08,862 ] INFO - root - Data transformation completed
+[ 2026-03-21 17:18:08,862 ] INFO - root - Completed: transform_data
+[ 2026-03-21 17:18:08,862 ] INFO - root - Started: split_data
+[ 2026-03-21 17:18:08,862 ] INFO - root - Starting train test split
+[ 2026-03-21 17:18:08,862 ] INFO - root - Train test split completed
+[ 2026-03-21 17:18:08,862 ] INFO - root - Completed: split_data
+[ 2026-03-21 17:18:08,862 ] INFO - root - Started: save_processed_data
+[ 2026-03-21 17:18:08,862 ] INFO - root - Saving processed datasets
+[ 2026-03-21 17:18:08,883 ] INFO - root - Processed data saved successfully
+[ 2026-03-21 17:18:08,883 ] INFO - root - Completed: save_processed_data
+[ 2026-03-21 17:18:08,883 ] INFO - root - Started: feature_target_split
+[ 2026-03-21 17:18:08,883 ] INFO - root - Starting feature target split
+[ 2026-03-21 17:18:08,884 ] INFO - root - Feature target split completed
+[ 2026-03-21 17:18:08,884 ] INFO - root - Completed: feature_target_split
+[ 2026-03-21 17:18:08,884 ] INFO - root - Started: scale_features
+[ 2026-03-21 17:18:08,884 ] INFO - root - Starting feature scaling
+[ 2026-03-21 17:18:08,885 ] INFO - root - Feature scaling completed
+[ 2026-03-21 17:18:08,885 ] INFO - root - Completed: scale_features
+[ 2026-03-21 17:18:08,885 ] INFO - root - Started: train_multiple_models
+[ 2026-03-21 17:18:08,885 ] INFO - root - Training multiple models
+[ 2026-03-21 17:18:08,893 ] INFO - root - Linear MAE: 0.008587631862445747
+[ 2026-03-21 17:18:08,897 ] INFO - root - Ridge MAE: 0.008587647599232258
+[ 2026-03-21 17:18:09,695 ] INFO - root - RF MAE: 0.009916930282234166
+[ 2026-03-21 17:18:09,695 ] INFO - root - All models trained
+[ 2026-03-21 17:18:09,696 ] INFO - root - Completed: train_multiple_models

@@ -13,8 +13,7 @@ def download_stock_data(ticker: str, start_date: str, end_date: str):
     try:
         logging.info(f"Downloading data for {ticker} till {end_date}")
 
-        data = yf.download(ticker, start=start_date, end=end_date)
-
+        data = yf.download(ticker, start=start_date, end=end_date, progress=False)
         os.makedirs("artifacts/raw", exist_ok=True)
 
         file_path = f"artifacts/raw/{ticker.replace('.', '_')}.csv"

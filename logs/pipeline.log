@@ -1,0 +1,210 @@
+2026-03-21 17:40:26,530 - INFO - Started: download_stock_data
+2026-03-21 17:40:26,530 - INFO - Downloading data for ITC.NS till 2025-01-01
+2026-03-21 17:40:27,495 - INFO - Data saved at artifacts/raw/ITC_NS.csv
+2026-03-21 17:40:27,495 - INFO - Completed: download_stock_data
+2026-03-21 17:40:27,495 - INFO - Started: transform_data
+2026-03-21 17:40:27,495 - INFO - Starting data transformation
+2026-03-21 17:40:27,509 - INFO - Data transformation completed
+2026-03-21 17:40:27,509 - INFO - Completed: transform_data
+2026-03-21 17:40:27,509 - INFO - Started: split_data
+2026-03-21 17:40:27,509 - INFO - Starting train test split
+2026-03-21 17:40:27,510 - INFO - Train test split completed
+2026-03-21 17:40:27,510 - INFO - Completed: split_data
+2026-03-21 17:40:27,510 - INFO - Started: save_processed_data
+2026-03-21 17:40:27,510 - INFO - Saving processed datasets
+2026-03-21 17:40:27,530 - INFO - Processed data saved successfully
+2026-03-21 17:40:27,530 - INFO - Completed: save_processed_data
+2026-03-21 17:40:27,530 - INFO - Started: feature_target_split
+2026-03-21 17:40:27,530 - INFO - Starting feature target split
+2026-03-21 17:40:27,530 - INFO - Feature target split completed
+2026-03-21 17:40:27,530 - INFO - Completed: feature_target_split
+2026-03-21 17:40:27,530 - INFO - Started: scale_features
+2026-03-21 17:40:27,530 - INFO - Starting feature scaling
+2026-03-21 17:40:27,532 - INFO - Feature scaling completed
+2026-03-21 17:40:27,532 - INFO - Completed: scale_features
+2026-03-21 17:40:27,532 - INFO - Started: train_multiple_models
+2026-03-21 17:40:28,360 - INFO - Completed: train_multiple_models
+2026-03-21 17:40:28,360 - INFO - Started: select_and_save_best_model
+2026-03-21 17:40:28,360 - INFO - Selecting best model
+2026-03-21 17:40:28,360 - INFO - Best model is Linear
+2026-03-21 17:40:28,362 - INFO - Model and scaler saved
+2026-03-21 17:40:28,362 - INFO - Completed: select_and_save_best_model
+2026-03-21 18:03:53,947 - INFO - Started: download_stock_data
+2026-03-21 18:03:53,947 - INFO - Downloading data for ITC.NS till 2025-01-01
+2026-03-21 18:03:54,790 - INFO - Data saved at artifacts/raw/ITC_NS.csv
+2026-03-21 18:03:54,790 - INFO - Completed: download_stock_data
+2026-03-21 18:03:54,790 - INFO - Started: transform_data
+2026-03-21 18:03:54,790 - INFO - Starting data transformation
+2026-03-21 18:03:54,806 - INFO - Data transformation completed
+2026-03-21 18:03:54,806 - INFO - Completed: transform_data
+2026-03-21 18:03:54,806 - INFO - Started: split_data
+2026-03-21 18:03:54,806 - INFO - Starting train test split
+2026-03-21 18:03:54,806 - INFO - Train test split completed
+2026-03-21 18:03:54,806 - INFO - Completed: split_data
+2026-03-21 18:03:54,806 - INFO - Started: save_processed_data
+2026-03-21 18:03:54,806 - INFO - Saving processed datasets
+2026-03-21 18:03:54,827 - INFO - Processed data saved successfully
+2026-03-21 18:03:54,827 - INFO - Completed: save_processed_data
+2026-03-21 18:03:54,827 - INFO - Started: feature_target_split
+2026-03-21 18:03:54,827 - INFO - Starting feature target split
+2026-03-21 18:03:54,828 - INFO - Feature target split completed
+2026-03-21 18:03:54,828 - INFO - Completed: feature_target_split
+2026-03-21 18:03:54,828 - INFO - Started: scale_features
+2026-03-21 18:03:54,828 - INFO - Starting feature scaling
+2026-03-21 18:03:54,829 - INFO - Feature scaling completed
+2026-03-21 18:03:54,829 - INFO - Completed: scale_features
+2026-03-21 18:03:54,829 - INFO - Started: train_multiple_models
+2026-03-21 18:03:54,829 - INFO - Training multiple baseline models
+2026-03-21 18:03:55,661 - INFO - Baseline Results: {'Linear': 0.008587634826747672, 'Ridge': 0.00858765056373475, 'RF': 0.009800056239966028}
+2026-03-21 18:03:55,661 - INFO - Completed: train_multiple_models
+2026-03-21 18:03:55,661 - INFO - Started: select_and_save_best_model
+2026-03-21 18:03:55,661 - INFO - Selecting best model
+2026-03-21 18:03:55,661 - INFO - Best model is Linear
+2026-03-21 18:03:55,663 - INFO - Model and scaler saved
+2026-03-21 18:03:55,663 - INFO - Completed: select_and_save_best_model
+2026-03-21 18:09:47,964 - INFO - Started: download_stock_data
+2026-03-21 18:09:47,965 - INFO - Downloading data for ITC.NS till 2025-01-01
+2026-03-21 18:09:48,988 - INFO - Data saved at artifacts/raw/ITC_NS.csv
+2026-03-21 18:09:48,988 - INFO - Completed: download_stock_data
+2026-03-21 18:09:48,988 - INFO - Started: transform_data
+2026-03-21 18:09:48,989 - INFO - Starting data transformation
+2026-03-21 18:09:49,004 - INFO - Data transformation completed
+2026-03-21 18:09:49,004 - INFO - Completed: transform_data
+2026-03-21 18:09:49,004 - INFO - Started: split_data
+2026-03-21 18:09:49,004 - INFO - Starting train test split
+2026-03-21 18:09:49,004 - INFO - Train test split completed
+2026-03-21 18:09:49,004 - INFO - Completed: split_data
+2026-03-21 18:09:49,004 - INFO - Started: save_processed_data
+2026-03-21 18:09:49,004 - INFO - Saving processed datasets
+2026-03-21 18:09:49,026 - INFO - Processed data saved successfully
+2026-03-21 18:09:49,026 - INFO - Completed: save_processed_data
+2026-03-21 18:09:49,026 - INFO - Started: feature_target_split
+2026-03-21 18:09:49,026 - INFO - Starting feature target split
+2026-03-21 18:09:49,026 - INFO - Feature target split completed
+2026-03-21 18:09:49,026 - INFO - Completed: feature_target_split
+2026-03-21 18:09:49,026 - INFO - Started: scale_features
+2026-03-21 18:09:49,026 - INFO - Starting feature scaling
+2026-03-21 18:09:49,028 - INFO - Feature scaling completed
+2026-03-21 18:09:49,028 - INFO - Completed: scale_features
+2026-03-21 18:09:49,028 - INFO - Started: train_multiple_models
+2026-03-21 18:09:49,028 - INFO - Training multiple baseline models
+2026-03-21 18:09:49,869 - INFO - Baseline Results: {'Linear': 0.008587635815374304, 'Ridge': 0.008587651552244894, 'RF': 0.009944122068534105}
+2026-03-21 18:09:49,870 - INFO - Completed: train_multiple_models
+2026-03-21 18:09:49,870 - INFO - Started: select_and_save_best_model
+2026-03-21 18:09:49,870 - INFO - Selecting best model
+2026-03-21 18:09:49,870 - INFO - Best model is Linear
+2026-03-21 18:09:49,872 - INFO - Model and scaler saved
+2026-03-21 18:09:49,872 - INFO - Completed: select_and_save_best_model
+2026-03-21 18:09:49,872 - INFO - Started: evaluate_model
+2026-03-21 18:09:49,872 - INFO - Starting model evaluation
+2026-03-21 18:09:49,872 - ERROR - Error in: evaluate_model
+2026-03-21 18:11:39,143 - INFO - Started: download_stock_data
+2026-03-21 18:11:39,143 - INFO - Downloading data for ITC.NS till 2025-01-01
+2026-03-21 18:11:39,978 - INFO - Data saved at artifacts/raw/ITC_NS.csv
+2026-03-21 18:11:39,978 - INFO - Completed: download_stock_data
+2026-03-21 18:11:39,978 - INFO - Started: transform_data
+2026-03-21 18:11:39,978 - INFO - Starting data transformation
+2026-03-21 18:11:39,994 - INFO - Data transformation completed
+2026-03-21 18:11:39,994 - INFO - Completed: transform_data
+2026-03-21 18:11:39,994 - INFO - Started: split_data
+2026-03-21 18:11:39,994 - INFO - Starting train test split
+2026-03-21 18:11:39,994 - INFO - Train test split completed
+2026-03-21 18:11:39,994 - INFO - Completed: split_data
+2026-03-21 18:11:39,994 - INFO - Started: save_processed_data
+2026-03-21 18:11:39,994 - INFO - Saving processed datasets
+2026-03-21 18:11:40,015 - INFO - Processed data saved successfully
+2026-03-21 18:11:40,015 - INFO - Completed: save_processed_data
+2026-03-21 18:11:40,015 - INFO - Started: feature_target_split
+2026-03-21 18:11:40,015 - INFO - Starting feature target split
+2026-03-21 18:11:40,016 - INFO - Feature target split completed
+2026-03-21 18:11:40,016 - INFO - Completed: feature_target_split
+2026-03-21 18:11:40,016 - INFO - Started: scale_features
+2026-03-21 18:11:40,016 - INFO - Starting feature scaling
+2026-03-21 18:11:40,018 - INFO - Feature scaling completed
+2026-03-21 18:11:40,018 - INFO - Completed: scale_features
+2026-03-21 18:11:40,018 - INFO - Started: train_multiple_models
+2026-03-21 18:11:40,018 - INFO - Training multiple baseline models
+2026-03-21 18:11:40,817 - INFO - Baseline Results: {'Linear': 0.00858763437580563, 'Ridge': 0.008587650112817409, 'RF': 0.00990954213033718}
+2026-03-21 18:11:40,817 - INFO - Completed: train_multiple_models
+2026-03-21 18:11:40,817 - INFO - Started: select_and_save_best_model
+2026-03-21 18:11:40,817 - INFO - Selecting best model
+2026-03-21 18:11:40,817 - INFO - Best model is Linear
+2026-03-21 18:11:40,818 - INFO - Model and scaler saved
+2026-03-21 18:11:40,818 - INFO - Completed: select_and_save_best_model
+2026-03-21 18:11:40,818 - INFO - Started: evaluate_model
+2026-03-21 18:11:40,818 - INFO - Starting model evaluation
+2026-03-21 18:11:40,818 - ERROR - Error in: evaluate_model
+2026-03-21 18:13:13,093 - INFO - Started: download_stock_data
+2026-03-21 18:13:13,094 - INFO - Downloading data for ITC.NS till 2025-01-01
+2026-03-21 18:13:13,873 - INFO - Data saved at artifacts/raw/ITC_NS.csv
+2026-03-21 18:13:13,873 - INFO - Completed: download_stock_data
+2026-03-21 18:13:13,873 - INFO - Started: transform_data
+2026-03-21 18:13:13,874 - INFO - Starting data transformation
+2026-03-21 18:13:13,890 - INFO - Data transformation completed
+2026-03-21 18:13:13,890 - INFO - Completed: transform_data
+2026-03-21 18:13:13,890 - INFO - Started: split_data
+2026-03-21 18:13:13,890 - INFO - Starting train test split
+2026-03-21 18:13:13,891 - INFO - Train test split completed
+2026-03-21 18:13:13,891 - INFO - Completed: split_data
+2026-03-21 18:13:13,891 - INFO - Started: save_processed_data
+2026-03-21 18:13:13,891 - INFO - Saving processed datasets
+2026-03-21 18:13:13,911 - INFO - Processed data saved successfully
+2026-03-21 18:13:13,911 - INFO - Completed: save_processed_data
+2026-03-21 18:13:13,911 - INFO - Started: feature_target_split
+2026-03-21 18:13:13,911 - INFO - Starting feature target split
+2026-03-21 18:13:13,911 - INFO - Feature target split completed
+2026-03-21 18:13:13,911 - INFO - Completed: feature_target_split
+2026-03-21 18:13:13,911 - INFO - Started: scale_features
+2026-03-21 18:13:13,911 - INFO - Starting feature scaling
+2026-03-21 18:13:13,913 - INFO - Feature scaling completed
+2026-03-21 18:13:13,913 - INFO - Completed: scale_features
+2026-03-21 18:13:13,913 - INFO - Started: train_multiple_models
+2026-03-21 18:13:13,913 - INFO - Training multiple baseline models
+2026-03-21 18:13:14,763 - INFO - Baseline Results: {'Linear': 0.008587633627670876, 'Ridge': 0.008587649364558468, 'RF': 0.009898025005607962}
+2026-03-21 18:13:14,763 - INFO - Completed: train_multiple_models
+2026-03-21 18:13:14,763 - INFO - Started: select_and_save_best_model
+2026-03-21 18:13:14,764 - INFO - Selecting best model
+2026-03-21 18:13:14,764 - INFO - Best model is Linear
+2026-03-21 18:13:14,766 - INFO - Model and scaler saved
+2026-03-21 18:13:14,766 - INFO - Completed: select_and_save_best_model
+2026-03-21 18:13:14,766 - INFO - Started: evaluate_model
+2026-03-21 18:13:14,766 - INFO - Starting model evaluation
+2026-03-21 18:13:14,767 - INFO - Evaluation completed → {'MAE': 0.008587633627670876, 'RMSE': np.float64(0.011424391967919327), 'R2': 0.011277246942712371}
+2026-03-21 18:13:14,767 - INFO - Completed: evaluate_model
+2026-03-21 18:19:32,875 - INFO - Started: download_stock_data
+2026-03-21 18:19:32,875 - INFO - Downloading data for ITC.NS till 2025-01-01
+2026-03-21 18:19:33,836 - INFO - Data saved at artifacts/raw/ITC_NS.csv
+2026-03-21 18:19:33,836 - INFO - Completed: download_stock_data
+2026-03-21 18:19:33,836 - INFO - Started: transform_data
+2026-03-21 18:19:33,836 - INFO - Starting data transformation
+2026-03-21 18:19:33,851 - INFO - Data transformation completed
+2026-03-21 18:19:33,851 - INFO - Completed: transform_data
+2026-03-21 18:19:33,851 - INFO - Started: split_data
+2026-03-21 18:19:33,851 - INFO - Starting train test split
+2026-03-21 18:19:33,851 - INFO - Train test split completed
+2026-03-21 18:19:33,851 - INFO - Completed: split_data
+2026-03-21 18:19:33,851 - INFO - Started: save_processed_data
+2026-03-21 18:19:33,851 - INFO - Saving processed datasets
+2026-03-21 18:19:33,873 - INFO - Processed data saved successfully
+2026-03-21 18:19:33,873 - INFO - Completed: save_processed_data
+2026-03-21 18:19:33,873 - INFO - Started: feature_target_split
+2026-03-21 18:19:33,873 - INFO - Starting feature target split
+2026-03-21 18:19:33,873 - INFO - Feature target split completed
+2026-03-21 18:19:33,874 - INFO - Completed: feature_target_split
+2026-03-21 18:19:33,874 - INFO - Started: scale_features
+2026-03-21 18:19:33,874 - INFO - Starting feature scaling
+2026-03-21 18:19:33,875 - INFO - Feature scaling completed
+2026-03-21 18:19:33,875 - INFO - Completed: scale_features
+2026-03-21 18:19:33,875 - INFO - Started: train_multiple_models
+2026-03-21 18:19:33,875 - INFO - Training multiple baseline models
+2026-03-21 18:19:34,690 - INFO - Baseline Results: {'Linear': 0.008587637419620353, 'Ridge': 0.008587653156561287, 'RF': 0.00999818691403956}
+2026-03-21 18:19:34,690 - INFO - Completed: train_multiple_models
+2026-03-21 18:19:34,690 - INFO - Started: select_and_save_best_model
+2026-03-21 18:19:34,690 - INFO - Selecting best model
+2026-03-21 18:19:34,690 - INFO - Best model is Linear
+2026-03-21 18:19:34,692 - INFO - Model and scaler saved
+2026-03-21 18:19:34,692 - INFO - Completed: select_and_save_best_model
+2026-03-21 18:19:34,692 - INFO - Started: evaluate_model
+2026-03-21 18:19:34,693 - INFO - Starting model evaluation
+2026-03-21 18:19:34,693 - INFO - Evaluation completed → {'MAE': 0.008587637419620353, 'RMSE': np.float64(0.011424395358223092), 'R2': 0.011277094081761363}
+2026-03-21 18:19:34,693 - INFO - Completed: evaluate_model

@@ -1,0 +1,10 @@
+[ 2026-03-21 16:22:02,079 ] INFO - root - Started: download_stock_data
+[ 2026-03-21 16:22:02,079 ] INFO - root - Downloading data for ITC.NS till 2025-01-01
+[ 2026-03-21 16:22:02,129 ] ERROR - yfinance - 
+1 Failed download:
+[ 2026-03-21 16:22:02,129 ] ERROR - yfinance - ['ITC.NS']: TypeError("'NoneType' object is not subscriptable")
+[ 2026-03-21 16:22:02,138 ] INFO - root - Data saved at artifacts/raw/ITC_NS.csv
+[ 2026-03-21 16:22:02,138 ] INFO - root - Completed: download_stock_data
+[ 2026-03-21 16:22:02,138 ] INFO - root - Started: transform_data
+[ 2026-03-21 16:22:02,138 ] INFO - root - Starting data transformation
+[ 2026-03-21 16:22:02,140 ] ERROR - root - Error in: transform_data

@@ -1,0 +1,31 @@
+[ 2026-03-21 17:35:43,052 ] INFO - root - Started: download_stock_data
+[ 2026-03-21 17:35:43,052 ] INFO - root - Downloading data for ITC.NS till 2025-01-01
+[ 2026-03-21 17:35:43,822 ] INFO - root - Data saved at artifacts/raw/ITC_NS.csv
+[ 2026-03-21 17:35:43,822 ] INFO - root - Completed: download_stock_data
+[ 2026-03-21 17:35:43,822 ] INFO - root - Started: transform_data
+[ 2026-03-21 17:35:43,822 ] INFO - root - Starting data transformation
+[ 2026-03-21 17:35:43,838 ] INFO - root - Data transformation completed
+[ 2026-03-21 17:35:43,838 ] INFO - root - Completed: transform_data
+[ 2026-03-21 17:35:43,838 ] INFO - root - Started: split_data
+[ 2026-03-21 17:35:43,838 ] INFO - root - Starting train test split
+[ 2026-03-21 17:35:43,838 ] INFO - root - Train test split completed
+[ 2026-03-21 17:35:43,838 ] INFO - root - Completed: split_data
+[ 2026-03-21 17:35:43,838 ] INFO - root - Started: save_processed_data
+[ 2026-03-21 17:35:43,838 ] INFO - root - Saving processed datasets
+[ 2026-03-21 17:35:43,859 ] INFO - root - Processed data saved successfully
+[ 2026-03-21 17:35:43,859 ] INFO - root - Completed: save_processed_data
+[ 2026-03-21 17:35:43,859 ] INFO - root - Started: feature_target_split
+[ 2026-03-21 17:35:43,859 ] INFO - root - Starting feature target split
+[ 2026-03-21 17:35:43,859 ] INFO - root - Feature target split completed
+[ 2026-03-21 17:35:43,859 ] INFO - root - Completed: feature_target_split
+[ 2026-03-21 17:35:43,859 ] INFO - root - Started: scale_features
+[ 2026-03-21 17:35:43,859 ] INFO - root - Starting feature scaling
+[ 2026-03-21 17:35:43,861 ] INFO - root - Feature scaling completed
+[ 2026-03-21 17:35:43,861 ] INFO - root - Completed: scale_features
+[ 2026-03-21 17:35:43,861 ] INFO - root - Started: train_multiple_models
+[ 2026-03-21 17:35:44,677 ] INFO - root - Completed: train_multiple_models
+[ 2026-03-21 17:35:44,677 ] INFO - root - Started: select_and_save_best_model
+[ 2026-03-21 17:35:44,677 ] INFO - root - Selecting best model
+[ 2026-03-21 17:35:44,678 ] INFO - root - Best model is Linear
+[ 2026-03-21 17:35:44,679 ] INFO - root - Model and scaler saved
+[ 2026-03-21 17:35:44,679 ] INFO - root - Completed: select_and_save_best_model

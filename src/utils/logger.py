@@ -1,15 +1,25 @@
 import logging
 import os
-from datetime import datetime
 
 LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
 
-LOG_FILE = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.log"
-LOG_PATH = os.path.join(LOG_DIR, LOG_FILE)
+LOG_FILE = os.path.join(LOG_DIR, "pipeline.log")
 
-logging.basicConfig(
-    filename=LOG_PATH,
-    format="[ %(asctime)s ] %(levelname)s - %(name)s - %(message)s",
-    level=logging.INFO,
-)
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+# file handler (logs folder me save karega)
+file_handler = logging.FileHandler(LOG_FILE)
+file_handler.setFormatter(logging.Formatter(
+    "%(asctime)s - %(levelname)s - %(message)s"
+))
+
+# terminal handler (terminal me print karega)
+stream_handler = logging.StreamHandler()
+stream_handler.setFormatter(logging.Formatter(
+    "%(asctime)s - %(levelname)s - %(message)s"
+))
+
+logger.addHandler(file_handler)
+logger.addHandler(stream_handler)
