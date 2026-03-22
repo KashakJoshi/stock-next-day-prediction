@@ -208,3 +208,92 @@
 2026-03-21 18:19:34,693 - INFO - Starting model evaluation
 2026-03-21 18:19:34,693 - INFO - Evaluation completed → {'MAE': 0.008587637419620353, 'RMSE': np.float64(0.011424395358223092), 'R2': 0.011277094081761363}
 2026-03-21 18:19:34,693 - INFO - Completed: evaluate_model
+2026-03-21 21:59:17,320 - INFO - Starting prediction pipeline
+2026-03-21 21:59:17,625 - INFO - Model and scaler loaded
+2026-03-21 21:59:17,625 - INFO - Started: download_stock_data
+2026-03-21 21:59:17,625 - INFO - Downloading data for ITC.NS till 2024-12-02
+2026-03-21 21:59:18,635 - INFO - Data saved at artifacts/raw/ITC_NS.csv
+2026-03-21 21:59:18,635 - INFO - Completed: download_stock_data
+2026-03-21 21:59:18,635 - INFO - Fresh data downloaded
+2026-03-21 21:59:18,635 - INFO - Started: transform_data
+2026-03-21 21:59:18,635 - INFO - Starting data transformation
+2026-03-21 21:59:18,651 - INFO - Data transformation completed
+2026-03-21 21:59:18,652 - INFO - Completed: transform_data
+2026-03-21 21:59:18,652 - INFO - Fresh data transformed
+2026-03-21 21:59:18,652 - WARNING - Date not trading day → using last available row
+2026-03-21 21:59:18,652 - INFO - Prediction row selected
+2026-03-21 21:59:18,653 - INFO - Features scaled
+2026-03-21 21:59:18,653 - INFO - Prediction generated: 0.0006880242785571949
+2026-03-21 21:59:19,599 - INFO - Prediction graph generated
+2026-03-21 21:59:19,599 - INFO - Prediction pipeline completed
+2026-03-21 22:07:00,688 - INFO - Starting prediction pipeline
+2026-03-21 22:07:00,843 - INFO - Model and scaler loaded
+2026-03-21 22:07:00,843 - INFO - Started: download_stock_data
+2026-03-21 22:07:00,843 - INFO - Downloading data for ITC.NS till 2024-12-02
+2026-03-21 22:07:01,950 - INFO - Data saved at artifacts/raw/ITC_NS.csv
+2026-03-21 22:07:01,950 - INFO - Completed: download_stock_data
+2026-03-21 22:07:01,950 - INFO - Fresh data downloaded
+2026-03-21 22:07:01,950 - INFO - Started: transform_data
+2026-03-21 22:07:01,950 - INFO - Starting data transformation
+2026-03-21 22:07:01,966 - INFO - Data transformation completed
+2026-03-21 22:07:01,966 - INFO - Completed: transform_data
+2026-03-21 22:07:01,966 - INFO - Fresh data transformed
+2026-03-21 22:07:01,966 - WARNING - Date not trading day → using last available row
+2026-03-21 22:07:01,967 - INFO - Prediction row selected
+2026-03-21 22:07:01,967 - INFO - Features scaled
+2026-03-21 22:07:01,967 - INFO - Prediction generated: 0.0006880259221138077
+2026-03-21 22:08:55,100 - INFO - Starting prediction pipeline
+2026-03-21 22:08:55,258 - INFO - Model and scaler loaded
+2026-03-21 22:08:55,258 - INFO - Started: download_stock_data
+2026-03-21 22:08:55,258 - INFO - Downloading data for ITC.NS till 2024-12-02
+2026-03-21 22:08:56,015 - INFO - Data saved at artifacts/raw/ITC_NS.csv
+2026-03-21 22:08:56,015 - INFO - Completed: download_stock_data
+2026-03-21 22:08:56,015 - INFO - Fresh data downloaded
+2026-03-21 22:08:56,015 - INFO - Started: transform_data
+2026-03-21 22:08:56,015 - INFO - Starting data transformation
+2026-03-21 22:08:56,031 - INFO - Data transformation completed
+2026-03-21 22:08:56,031 - INFO - Completed: transform_data
+2026-03-21 22:08:56,031 - INFO - Fresh data transformed
+2026-03-21 22:08:56,031 - WARNING - Date not trading day → using last available row
+2026-03-21 22:08:56,032 - INFO - Prediction row selected
+2026-03-21 22:08:56,032 - INFO - Features scaled
+2026-03-21 22:08:56,032 - INFO - Prediction generated: 0.0006880242179663281
+2026-03-21 22:08:56,241 - INFO - Prediction graph generated
+2026-03-21 22:08:56,241 - INFO - Prediction pipeline completed
+2026-03-21 22:09:23,812 - INFO - Starting prediction pipeline
+2026-03-21 22:09:23,960 - INFO - Model and scaler loaded
+2026-03-21 22:09:23,960 - INFO - Started: download_stock_data
+2026-03-21 22:09:23,960 - INFO - Downloading data for ITC.NS till 2024-12-02
+2026-03-21 22:09:25,213 - INFO - Data saved at artifacts/raw/ITC_NS.csv
+2026-03-21 22:09:25,213 - INFO - Completed: download_stock_data
+2026-03-21 22:09:25,213 - INFO - Fresh data downloaded
+2026-03-21 22:09:25,213 - INFO - Started: transform_data
+2026-03-21 22:09:25,213 - INFO - Starting data transformation
+2026-03-21 22:09:25,228 - INFO - Data transformation completed
+2026-03-21 22:09:25,228 - INFO - Completed: transform_data
+2026-03-21 22:09:25,228 - INFO - Fresh data transformed
+2026-03-21 22:09:25,228 - WARNING - Date not trading day → using last available row
+2026-03-21 22:09:25,228 - INFO - Prediction row selected
+2026-03-21 22:09:25,229 - INFO - Features scaled
+2026-03-21 22:09:25,229 - INFO - Prediction generated: 0.0006880242718128296
+2026-03-21 22:09:25,435 - INFO - Prediction graph generated
+2026-03-21 22:09:25,435 - INFO - Prediction pipeline completed
+2026-03-21 22:13:50,112 - INFO - Starting prediction pipeline
+2026-03-21 22:13:50,262 - INFO - Model and scaler loaded
+2026-03-21 22:13:50,262 - INFO - Started: download_stock_data
+2026-03-21 22:13:50,262 - INFO - Downloading data for ITC.NS till 2024-12-02
+2026-03-21 22:13:51,556 - INFO - Data saved at artifacts/raw/ITC_NS.csv
+2026-03-21 22:13:51,557 - INFO - Completed: download_stock_data
+2026-03-21 22:13:51,557 - INFO - Fresh data downloaded
+2026-03-21 22:13:51,557 - INFO - Started: transform_data
+2026-03-21 22:13:51,557 - INFO - Starting data transformation
+2026-03-21 22:13:51,571 - INFO - Data transformation completed
+2026-03-21 22:13:51,571 - INFO - Completed: transform_data
+2026-03-21 22:13:51,571 - INFO - Fresh data transformed
+2026-03-21 22:13:51,571 - WARNING - Date not trading day → using last available row
+2026-03-21 22:13:51,571 - INFO - Prediction row selected
+2026-03-21 22:13:51,572 - INFO - Features scaled
+2026-03-21 22:13:51,572 - INFO - Prediction generated: 0.0006880259221138086
+2026-03-21 22:13:51,794 - INFO - Prediction graph generated
+2026-03-21 22:13:51,794 - INFO - Prediction pipeline completed
+2026-03-21 22:13:51,794 - INFO - Prediction result saved at artifacts/predictions/ITC.NS_prediction.json
