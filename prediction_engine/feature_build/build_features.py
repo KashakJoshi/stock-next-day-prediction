@@ -3,6 +3,8 @@ import numpy as np
 
 
 def build_features(df):
+    
+    df.columns = df.columns.get_level_values(0)
 
     print("STEP 2 → Feature Engineering")
 
@@ -42,8 +44,7 @@ def build_features(df):
 
     df["vol_ratio"] = df["Volume"] / df["Volume"].rolling(20).mean()
 
-    df["vol_pressure"] = df["Volume"] * df["returns"]
-
+    df["vol_pressure"] = df["Volume"].values * df["returns"].values
     df["break_high_10"] = df["High"] > df["High"].rolling(10).max()
 
     df["drawdown_5"] = df["Close"] / df["Close"].rolling(5).max() - 1
