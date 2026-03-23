@@ -1,53 +1,60 @@
+import pandas as pd
 import joblib
 
 from prediction_engine.data_fetch.fetch_data import fetch_data
-from prediction_engine.feature_build.build_features import build_features
+from prediction_engine.feature_build.build_features import (
+    build_features,
+    build_future_features
+)
 
 
-def run_prediction_pipeline(ticker, prediction_date):
+def run_prediction_pipeline(ticker, specified_date, future_days=5):
 
     print("STEP 1 → Fetching data...")
     df = fetch_data(ticker)
 
-    print("STEP 2 → Feature Engineering...")
-    df = build_features(df)
+    if df is None or len(df) == 0:
+        raise Exception("❌ No data fetched")
 
-    print("DF SHAPE AFTER FE:", df.shape)
+    df = df.reset_index()
 
-    print("STEP 3 → Load Artifacts...")
+    print("STEP 2 → Simulating future prices...")
+    prediction_df = build_future_features(df, future_days=future_days)
+
+    print("STEP 3 → Feature Engineering...")
+    prediction_df = build_features(prediction_df)
+
+    prediction_df = prediction_df.dropna().reset_index(drop=True)
+
+    print("STEP 4 → Load artifacts...")
     model = joblib.load("artifacts/advanced_model/best_catboost_model.pkl")
     scaler = joblib.load("artifacts/advanced_model/scaler.pkl")
     features = joblib.load("artifacts/advanced_model/feature_list.pkl")
 
-    # ⭐ IMPORTANT → dropna AFTER features
-    df = df.dropna()
+    prediction_df["Date"] = pd.to_datetime(prediction_df["Date"]).dt.date
+    specified_date = pd.to_datetime(specified_date).date()
 
-    print("STEP 4 → Selecting prediction row...")
+    if specified_date not in prediction_df["Date"].values:
+        raise Exception("❌ Specified date not available")
 
-    df["Date"] = df["Date"].astype(str)
+    print("STEP 5 → Predicting future sequence...")
 
-    if prediction_date in df["Date"].values:
+    future_slice = prediction_df[prediction_df["Date"] >= specified_date].head(future_days)
 
-        X = df[df["Date"] == prediction_date][features]
-
-        print("✅ Using SPECIFIED date")
-
-    else:
-
-        X = df[features].tail(1)
-
-        print("❌ Date not found → using LAST available row")
-
-    # ⭐ SAFETY CHECK
-    if len(X) == 0:
-        raise Exception("❌ No valid row available for prediction")
-
-    print("STEP 5 → Scaling...")
+    X = future_slice[features]
     X_scaled = scaler.transform(X)
 
-    print("STEP 6 → Predicting...")
-    pred = model.predict(X_scaled)[0]
+    predictions = model.predict(X_scaled)
 
-    print("\n FINAL PREDICTION:", pred)
+    specified_return = predictions[0]
+    avg_future_return = predictions.mean()
 
-    return pred
+    print("\n✅ Specified Date Return:", specified_return)
+    print("✅ Avg Future Return:", avg_future_return)
+
+    return {
+        "specified_return": specified_return,
+        "avg_future_return": avg_future_return,
+        "predictions": predictions,
+        "dates": future_slice["Date"].tolist()
+    }
