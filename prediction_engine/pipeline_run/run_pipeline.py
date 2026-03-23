@@ -2,13 +2,12 @@ import pandas as pd
 import joblib
 
 from prediction_engine.data_fetch.fetch_data import fetch_data
-from prediction_engine.feature_build.build_features import (
-    build_features,
-    build_future_features
-)
+from prediction_engine.feature_build.build_features import build_features
+from prediction_engine.visualization.plot_history import plot_year_history
+from prediction_engine.visualization.plot_history import plot_month_history
 
 
-def run_prediction_pipeline(ticker, specified_date, future_days=5):
+def run_prediction_pipeline(ticker, specified_date):
 
     print("STEP 1 → Fetching data...")
     df = fetch_data(ticker)
@@ -18,43 +17,37 @@ def run_prediction_pipeline(ticker, specified_date, future_days=5):
 
     df = df.reset_index()
 
-    print("STEP 2 → Simulating future prices...")
-    prediction_df = build_future_features(df, future_days=future_days)
+    print("STEP 2 → Feature Engineering...")
+    df = build_features(df)
 
-    print("STEP 3 → Feature Engineering...")
-    prediction_df = build_features(prediction_df)
+    df = df.dropna().reset_index(drop=True)
 
-    prediction_df = prediction_df.dropna().reset_index(drop=True)
-
-    print("STEP 4 → Load artifacts...")
+    print("STEP 3 → Load Model...")
     model = joblib.load("artifacts/advanced_model/best_catboost_model.pkl")
-    scaler = joblib.load("artifacts/advanced_model/scaler.pkl")
-    features = joblib.load("artifacts/advanced_model/feature_list.pkl")
 
-    prediction_df["Date"] = pd.to_datetime(prediction_df["Date"]).dt.date
-    specified_date = pd.to_datetime(specified_date).date()
+    print("STEP 4 → Convert Date...")
+    specified_date = pd.to_datetime(specified_date)
 
-    if specified_date not in prediction_df["Date"].values:
-        raise Exception("❌ Specified date not available")
+    if specified_date not in df["Date"].values:
+        raise Exception("❌ Specified date not available in dataset")
 
-    print("STEP 5 → Predicting future sequence...")
+    row = df[df["Date"] == specified_date]
 
-    future_slice = prediction_df[prediction_df["Date"] >= specified_date].head(future_days)
+    feature_cols = [c for c in df.columns if c not in ["Date", "Close"]]
 
-    X = future_slice[features]
-    X_scaled = scaler.transform(X)
+    X = row[feature_cols]
 
-    predictions = model.predict(X_scaled)
+    print("STEP 5 → Predicting...")
+    prediction = model.predict(X)[0]
 
-    specified_return = predictions[0]
-    avg_future_return = predictions.mean()
+    print("✅ Predicted Return:", prediction)
 
-    print("\n✅ Specified Date Return:", specified_return)
-    print("✅ Avg Future Return:", avg_future_return)
+    print("STEP 6 → Plotting Graphs...")
+
+    plot_year_history(df, ticker, specified_date)
+    plot_month_history(df, ticker, specified_date)
 
     return {
-        "specified_return": specified_return,
-        "avg_future_return": avg_future_return,
-        "predictions": predictions,
-        "dates": future_slice["Date"].tolist()
+        "predicted_return": float(prediction),
+        "date": specified_date.date()
     }
