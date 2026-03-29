@@ -1,49 +1,124 @@
 import streamlit as st
 import requests
 import base64
+from datetime import date
 
-st.title("📈 Stock Prediction App")
+# ===== PAGE CONFIG =====
+st.set_page_config(page_title="Stock Predictor", layout="wide")
 
-# ===== INPUT =====
-ticker = st.text_input("Enter Stock Ticker", "RELIANCE.NS")
-date = st.text_input("Enter Date (YYYY-MM-DD)", "2025-01-10")
+# ===== PREMIUM CSS =====
+st.markdown("""
+<style>
+.stApp {
+    background: linear-gradient(135deg, #141E30, #243B55);
+    color: white;
+}
+
+/* Cards */
+div[data-testid="stMetric"] {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+/* Button */
+.stButton>button {
+    background-color: #00c6ff;
+    color: black;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+/* Input */
+input {
+    text-transform: uppercase;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# ===== TITLE =====
+st.markdown("## 📈 AI Stock Prediction Dashboard")
+
+# ===== SEARCH + DATE =====
+col1, col2 = st.columns(2)
+
+popular_stocks = [
+    "RELIANCE.NS", "TCS.NS", "INFY.NS",
+    "HDFCBANK.NS", "ITC.NS", "SBIN.NS",
+    "TATASTEEL.NS", "WIPRO.NS"
+]
+
+with col1:
+    search = st.text_input("🔍 Search Stock")
+    ticker = search.upper()
+
+    if ticker:
+        filtered = [s for s in popular_stocks if ticker in s]
+
+        if filtered:
+            st.caption("Suggestions:")
+            for s in filtered:
+                if st.button(s):
+                    ticker = s
+
+with col2:
+    selected_date = st.date_input("📅 Select Date", date.today())
+
+date_str = str(selected_date)
+
+# ===== VALIDATION =====
+if ticker == "":
+    st.warning("⚠ Please enter a stock ticker")
 
 # ===== BUTTON =====
-if st.button("Predict"):
+if st.button("🚀 Predict Now") and ticker != "":
 
-    url = f"http://127.0.0.1:8000/predict?ticker={ticker}&date={date}"
-    response = requests.get(url)
-    data = response.json()
+    url = f"http://127.0.0.1:8000/predict?ticker={ticker}&date={date_str}"
 
-    # ===== RESULT =====
-    st.subheader("Prediction Result")
+    try:
+        response = requests.get(url)
+        data = response.json()
 
-    pred = data["predicted_return"]
+        st.divider()
 
-    # 🎨 Colored Return
-    if pred > 0:
-        st.markdown(f"### 🟢 Predicted Return: `{pred}`")
-    else:
-        st.markdown(f"### 🔴 Predicted Return: `{pred}`")
+        # ===== RESULT =====
+        col1, col2, col3 = st.columns(3)
 
-    # 🎯 SIGNAL
-    if pred > 0:
-        st.success("📈 UP Signal (Buy)")
-    else:
-        st.error("📉 DOWN Signal (Sell)")
+        pred = data["predicted_return"]
 
-    # 📅 Date
-    st.write("📅 Used Date:", data["used_date"])
+        # ===== RETURN + SIGNAL =====
+        with col1:
+            if pred > 0:
+                st.markdown(f"<h3 style='color:green;'>📈 Return: {pred}</h3>", unsafe_allow_html=True)
+                st.success("BUY SIGNAL")
+            else:
+                st.markdown(f"<h3 style='color:red;'>📉 Return: {pred}</h3>", unsafe_allow_html=True)
+                st.error("SELL SIGNAL")
 
-    # 💰 Prices
-    st.write("💰 Current Price:", data["current_price"])
-    st.write("🔮 Expected Price:", data["expected_price"])
+        # ===== PRICE =====
+        with col2:
+            st.metric("💰 Current Price", data.get("current_price"))
+            st.metric("🔮 Expected Price", data.get("expected_price"))
 
-    # ===== GRAPHS =====
-    st.subheader("📊 Full History Graph")
-    img1 = base64.b64decode(data["graphs"]["full_graph"])
-    st.image(img1)
+        # ===== DATE =====
+        with col3:
+            st.info(f"📅 Used Date: {data['used_date']}")
 
-    st.subheader("📊 Recent + Prediction Graph")
-    img2 = base64.b64decode(data["graphs"]["recent_graph"])
-    st.image(img2)
+        st.divider()
+
+        # ===== GRAPHS =====
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.subheader("📊 Full History")
+            img1 = base64.b64decode(data["graphs"]["full_graph"])
+            st.image(img1)
+
+        with col2:
+            st.subheader("📊 Recent + Prediction")
+            img2 = base64.b64decode(data["graphs"]["recent_graph"])
+            st.image(img2)
+
+    except:
+        st.error("❌ Error fetching data. Check ticker or server.")
