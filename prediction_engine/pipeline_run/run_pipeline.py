@@ -3,8 +3,7 @@ import joblib
 
 from prediction_engine.data_fetch.fetch_data import fetch_data
 from prediction_engine.feature_build.build_features import build_features
-from prediction_engine.visualization.plot_history import plot_year_history
-from prediction_engine.visualization.plot_history import plot_month_history
+from prediction_engine.visualization.plot_history import plot_all
 
 
 def run_prediction_pipeline(ticker, specified_date):
@@ -28,8 +27,24 @@ def run_prediction_pipeline(ticker, specified_date):
     print("STEP 4 → Convert Date...")
     specified_date = pd.to_datetime(specified_date)
 
-    if specified_date not in df["Date"].values:
-        raise Exception("❌ Specified date not available in dataset")
+    # if future date → use latest available data
+    # Handle future + holiday separately
+
+    last_date = df['Date'].max()
+
+    if specified_date > last_date:
+        print("Future date detected → using latest available data")
+        specified_date = last_date
+
+    elif specified_date not in df['Date'].values:
+        print("Holiday/Weekend detected → using nearest trading day")
+    
+    nearest_idx = df['Date'].searchsorted(specified_date)
+    
+    if nearest_idx >= len(df):
+        nearest_idx = len(df) - 1
+    
+    specified_date = df['Date'].iloc[nearest_idx]
 
     row = df[df["Date"] == specified_date]
 
@@ -44,8 +59,7 @@ def run_prediction_pipeline(ticker, specified_date):
 
     print("STEP 6 → Plotting Graphs...")
 
-    plot_year_history(df, ticker, specified_date)
-    plot_month_history(df, ticker, specified_date)
+    plot_all(df, ticker, prediction, specified_date)
 
     return {
         "predicted_return": float(prediction),

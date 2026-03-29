@@ -297,3 +297,40 @@
 2026-03-21 22:13:51,794 - INFO - Prediction graph generated
 2026-03-21 22:13:51,794 - INFO - Prediction pipeline completed
 2026-03-21 22:13:51,794 - INFO - Prediction result saved at artifacts/predictions/ITC.NS_prediction.json
+2026-03-29 22:59:44,237 - INFO - Started: download_stock_data
+2026-03-29 22:59:44,237 - INFO - Downloading data for ITC.NS till 2025-01-01
+2026-03-29 22:59:46,787 - INFO - Data saved at artifacts/raw/ITC_NS.csv
+2026-03-29 22:59:46,787 - INFO - Completed: download_stock_data
+2026-03-29 22:59:46,787 - INFO - Started: transform_data
+2026-03-29 22:59:46,787 - INFO - Starting data transformation
+2026-03-29 22:59:46,802 - INFO - Data transformation completed
+2026-03-29 22:59:46,802 - INFO - Completed: transform_data
+2026-03-29 22:59:46,802 - INFO - Started: split_data
+2026-03-29 22:59:46,802 - INFO - Starting train test split
+2026-03-29 22:59:46,802 - INFO - Train test split completed
+2026-03-29 22:59:46,802 - INFO - Completed: split_data
+2026-03-29 22:59:46,802 - INFO - Started: save_processed_data
+2026-03-29 22:59:46,802 - INFO - Saving processed datasets
+2026-03-29 22:59:46,825 - INFO - Processed data saved successfully
+2026-03-29 22:59:46,825 - INFO - Completed: save_processed_data
+2026-03-29 22:59:46,825 - INFO - Started: feature_target_split
+2026-03-29 22:59:46,825 - INFO - Starting feature target split
+2026-03-29 22:59:46,825 - INFO - Feature target split completed
+2026-03-29 22:59:46,825 - INFO - Completed: feature_target_split
+2026-03-29 22:59:46,825 - INFO - Started: scale_features
+2026-03-29 22:59:46,825 - INFO - Starting feature scaling
+2026-03-29 22:59:46,827 - INFO - Feature scaling completed
+2026-03-29 22:59:46,827 - INFO - Completed: scale_features
+2026-03-29 22:59:46,827 - INFO - Started: train_multiple_models
+2026-03-29 22:59:46,827 - INFO - Training multiple baseline models
+2026-03-29 22:59:47,651 - INFO - Baseline Results: {'Linear': 0.00858763684951644, 'Ridge': 0.008587652586295486, 'RF': 0.009834785840950157}
+2026-03-29 22:59:47,651 - INFO - Completed: train_multiple_models
+2026-03-29 22:59:47,651 - INFO - Started: select_and_save_best_model
+2026-03-29 22:59:47,651 - INFO - Selecting best model
+2026-03-29 22:59:47,651 - INFO - Best model is Linear
+2026-03-29 22:59:47,652 - INFO - Model and scaler saved
+2026-03-29 22:59:47,652 - INFO - Completed: select_and_save_best_model
+2026-03-29 22:59:47,652 - INFO - Started: evaluate_model
+2026-03-29 22:59:47,652 - INFO - Starting model evaluation
+2026-03-29 22:59:47,653 - INFO - Evaluation completed → {'MAE': 0.00858763684951644, 'RMSE': np.float64(0.011424392919886363), 'R2': 0.011277143043210591}
+2026-03-29 22:59:47,653 - INFO - Completed: evaluate_model
