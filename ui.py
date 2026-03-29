@@ -3,122 +3,149 @@ import requests
 import base64
 from datetime import date
 
-# ===== PAGE CONFIG =====
-st.set_page_config(page_title="Stock Predictor", layout="wide")
+# ===== CONFIG =====
+st.set_page_config(page_title="AI Stock Predictor", layout="wide")
 
-# ===== PREMIUM CSS =====
+# ===== CSS (SUPER ATTRACTIVE) =====
 st.markdown("""
 <style>
 .stApp {
-    background: linear-gradient(135deg, #141E30, #243B55);
-    color: white;
+    background: linear-gradient(
+        135deg,
+        #020617 0%,
+        #020c1b 30%,
+        #041a3b 70%,
+        #020617 100%
+    );
+    color: #ffffff;
 }
 
-/* Cards */
-div[data-testid="stMetric"] {
-    background: rgba(255,255,255,0.05);
+/* Glass cards */
+.card {
+    background: rgba(255,255,255,0.06);
     padding: 20px;
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+/* Title */
+.title {
+    text-align: center;
+    font-size: 42px;
+    font-weight: bold;
 }
 
 /* Button */
 .stButton>button {
-    background-color: #00c6ff;
-    color: black;
-    border-radius: 10px;
-    font-weight: bold;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    color: white;
+    border-radius: 12px;
+    font-size: 18px;
+    height: 3em;
+    width: 100%;
 }
 
-/* Input */
+/* Input uppercase */
 input {
     text-transform: uppercase;
+}
+
+/* Divider */
+hr {
+    border: 1px solid rgba(255,255,255,0.1);
 }
 </style>
 """, unsafe_allow_html=True)
 
-# ===== TITLE =====
-st.markdown("## 📈 AI Stock Prediction Dashboard")
+# ===== HEADER =====
+st.markdown("<div class='title'>📊 AI Stock Market Predictor 🚀</div>", unsafe_allow_html=True)
+st.caption("📈 Predict next-day movement using Machine Learning")
 
-# ===== SEARCH + DATE =====
+# ===== DATE LIMIT (IMPORTANT FIX) =====
+TODAY = date.today()
+MIN_DATE = date(2020, 1, 1)   # data available start
+
+# ===== INPUT SECTION =====
 col1, col2 = st.columns(2)
 
-popular_stocks = [
-    "RELIANCE.NS", "TCS.NS", "INFY.NS",
-    "HDFCBANK.NS", "ITC.NS", "SBIN.NS",
-    "TATASTEEL.NS", "WIPRO.NS"
-]
-
 with col1:
-    search = st.text_input("🔍 Search Stock")
+    search = st.text_input("🔍 Enter Stock (e.g. RELIANCE, TCS, MRF)")
     ticker = search.upper()
 
-    if ticker:
-        filtered = [s for s in popular_stocks if ticker in s]
+    if ticker and not ticker.endswith(".NS"):
+        ticker = ticker + ".NS"
 
-        if filtered:
-            st.caption("Suggestions:")
-            for s in filtered:
-                if st.button(s):
-                    ticker = s
+    st.caption("💡 NSE format auto-applied (.NS)")
 
 with col2:
-    selected_date = st.date_input("📅 Select Date", date.today())
+    selected_date = st.date_input(
+        "📅 Select Date",
+        value=TODAY,
+        min_value=MIN_DATE,
+        max_value=TODAY   # ❌ future disabled
+    )
 
 date_str = str(selected_date)
 
-# ===== VALIDATION =====
-if ticker == "":
-    st.warning("⚠ Please enter a stock ticker")
-
 # ===== BUTTON =====
-if st.button("🚀 Predict Now") and ticker != "":
+if st.button("🚀 Predict Now"):
 
-    url = f"http://127.0.0.1:8000/predict?ticker={ticker}&date={date_str}"
+    if ticker == "":
+        st.warning("⚠ Enter stock ticker first")
+    else:
 
-    try:
-        response = requests.get(url)
-        data = response.json()
+        url = f"http://127.0.0.1:8000/predict?ticker={ticker}&date={date_str}"
 
-        st.divider()
+        with st.spinner("🔄 Analyzing market patterns..."):
 
-        # ===== RESULT =====
-        col1, col2, col3 = st.columns(3)
+            try:
+                response = requests.get(url)
+                data = response.json()
 
-        pred = data["predicted_return"]
+                st.markdown("<hr>", unsafe_allow_html=True)
 
-        # ===== RETURN + SIGNAL =====
-        with col1:
-            if pred > 0:
-                st.markdown(f"<h3 style='color:green;'>📈 Return: {pred}</h3>", unsafe_allow_html=True)
-                st.success("BUY SIGNAL")
-            else:
-                st.markdown(f"<h3 style='color:red;'>📉 Return: {pred}</h3>", unsafe_allow_html=True)
-                st.error("SELL SIGNAL")
+                pred = data["predicted_return"]
+                confidence = abs(pred)
 
-        # ===== PRICE =====
-        with col2:
-            st.metric("💰 Current Price", data.get("current_price"))
-            st.metric("🔮 Expected Price", data.get("expected_price"))
+                # ===== RESULT SECTION =====
+                col1, col2, col3 = st.columns(3)
 
-        # ===== DATE =====
-        with col3:
-            st.info(f"📅 Used Date: {data['used_date']}")
+                # ===== RETURN =====
+                with col1:
+                    if pred > 0:
+                        st.markdown(f"### 📈 Return\n<span style='color:lightgreen;font-size:28px;'>{round(pred,6)}</span>", unsafe_allow_html=True)
+                        st.success("BUY SIGNAL 🚀")
+                    else:
+                        st.markdown(f"### 📉 Return\n<span style='color:red;font-size:28px;'>{round(pred,6)}</span>", unsafe_allow_html=True)
+                        st.error("SELL SIGNAL ⚠")
 
-        st.divider()
+                # ===== PRICES =====
+                with col2:
+                    st.markdown("###  Prices")
+                    st.metric("Current Price", round(data.get("current_price", 0),2))
+                    st.metric("Expected Price", round(data.get("expected_price", 0),2))
 
-        # ===== GRAPHS =====
-        col1, col2 = st.columns(2)
+                # ===== META =====
+                with col3:
+                    st.markdown("### 📊 Info")
+                    st.info(f"📅 Used Date: {data['used_date']}")
+                    st.metric("Confidence", round(confidence,6))
 
-        with col1:
-            st.subheader("📊 Full History")
-            img1 = base64.b64decode(data["graphs"]["full_graph"])
-            st.image(img1)
+                st.markdown("<hr>", unsafe_allow_html=True)
 
-        with col2:
-            st.subheader("📊 Recent + Prediction")
-            img2 = base64.b64decode(data["graphs"]["recent_graph"])
-            st.image(img2)
+                # ===== GRAPHS =====
+                col1, col2 = st.columns(2)
 
-    except:
-        st.error("❌ Error fetching data. Check ticker or server.")
+                with col1:
+                    st.subheader("📊 Full History")
+                    img1 = base64.b64decode(data["graphs"]["full_graph"])
+                    st.image(img1)
+
+                with col2:
+                    st.subheader("📊 Recent + Prediction")
+                    img2 = base64.b64decode(data["graphs"]["recent_graph"])
+                    st.image(img2)
+
+            except:
+                st.error("❌ Server error or invalid stock symbol")
