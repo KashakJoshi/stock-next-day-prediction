@@ -61,8 +61,14 @@ def run_prediction_pipeline(ticker, specified_date):
 
     graphs = plot_all(df, ticker, prediction, specified_date)
     
+    current_price = df[df["Date"] == specified_date]["Close"].values[0]
+    expected_price = current_price * (1 + prediction)
+    print("DEBUG → returning:", current_price, expected_price)
+
     return {
-    "predicted_return": prediction,
-    "date": specified_date,
-    "graphs": graphs
-}
+        "predicted_return": prediction,
+        "current_price": float(current_price),
+        "expected_price": float(expected_price),
+        "date": specified_date,
+        "graphs": graphs
+    }

@@ -16,6 +16,8 @@ def predict(ticker: str, date: str):
     return {
         "ticker": ticker,
         "predicted_return": result['predicted_return'],
+        "current_price": result.get('current_price'),
+        "expected_price": result.get('expected_price'),
         "used_date": str(result['date']),
         "graphs": result['graphs']
     }
