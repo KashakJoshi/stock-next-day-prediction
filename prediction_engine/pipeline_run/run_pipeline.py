@@ -59,9 +59,10 @@ def run_prediction_pipeline(ticker, specified_date):
 
     print("STEP 6 → Plotting Graphs...")
 
-    plot_all(df, ticker, prediction, specified_date)
-
+    graphs = plot_all(df, ticker, prediction, specified_date)
+    
     return {
-        "predicted_return": float(prediction),
-        "date": specified_date.date()
-    }
+    "predicted_return": prediction,
+    "date": specified_date,
+    "graphs": graphs
+}
