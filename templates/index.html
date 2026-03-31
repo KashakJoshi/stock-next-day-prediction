@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock AI Predictor</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #020617;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 40px;
+        }
+
+        .container {
+            margin-top: 40px;
+        }
+
+        input, button {
+            padding: 12px;
+            margin: 10px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* CARD */
+        .card {
+            padding: 20px;
+            margin: 20px auto;
+            width: 320px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        /* FORCE COLORS */
+        .green {
+            background-color: green !important;
+            color: white !important;
+        }
+
+        .red {
+            background-color: red !important;
+            color: white !important;
+        }
+
+        /* FULL SCREEN LOADER */
+        #loaderOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader {
+            border: 6px solid gray;
+            border-top: 6px solid lime;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loaderOverlay">
+    <div class="loader"></div>
+</div>
+
+<h1>📊 AI Stock Predictor</h1>
+
+<div class="container">
+    <input id="ticker" placeholder="RELIANCE">
+    <input id="date" type="date">
+    <br>
+    <button onclick="predict()">Predict</button>
+</div>
+
+<div id="result"></div>
+
+<script>
+async function predict() {
+
+    const loader = document.getElementById("loaderOverlay");
+    const resultDiv = document.getElementById("result");
+
+    // SHOW LOADER
+    loader.style.display = "flex";
+
+    const tickerInput = document.getElementById("ticker").value.toUpperCase();
+    const ticker = tickerInput.endsWith(".NS") ? tickerInput : tickerInput + ".NS";
+    const date = document.getElementById("date").value;
+
+    try {
+
+        // Force loader visible
+        await new Promise(r => setTimeout(r, 1000));
+
+        const res = await fetch(`/predict?ticker=${ticker}&date=${date}`);
+        const data = await res.json();
+
+        // HIDE LOADER
+        loader.style.display = "none";
+
+        const isProfit = data.predicted_return > 0;
+
+        const signalClass = isProfit ? "green" : "red";
+        const signalText = isProfit ? "PROFIT 📈" : "LOSS 📉";
+
+        resultDiv.innerHTML = `
+            <div class="card ${signalClass}">
+                <h2>${signalText}</h2>
+                <p>${(data.predicted_return * 100).toFixed(2)}%</p>
+                <p>₹ ${data.current_price}</p>
+            </div>
+        `;
+
+    } catch (error) {
+        loader.style.display = "none";
+        resultDiv.innerHTML = "<h3 style='color:red'>Error</h3>";
+    }
+}
+</script>
+
+</body>
+</html>
